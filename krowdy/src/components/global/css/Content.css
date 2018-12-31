@@ -1,2 +1,93 @@
 .Content {
+  width: 78%;
+  background-color: #ffffff;
+  box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.08);
+  margin-top: 8px;
+  margin-left: 11%;
+}
+
+.content-header {
+  display: flex;
+  flex-direction: row;
+  margin-top: 34px;
+  margin-left: 3%;
+  margin-right: 3%;
+  padding-top: 21px;
+  padding-bottom: 33px;
+  /* background: silver; */
+}
+
+.user-picture {
+  padding-bottom: 6% !important;
+}
+
+.user-info {
+  margin-left: 18px;
+}
+
+.user-name {
+  color: rgba(0, 0, 0, 0.65);
+  font-family: Roboto;
+  font-size: 20px;
+  line-height: 28px;
+  margin-bottom: 0px;
+}
+
+.user-mail {
+  color: rgba(0, 0, 0, 0.65);
+  font-family: Roboto;
+  font-size: 14px;
+  line-height: 22px;
+  margin-bottom: 5px;
+}
+
+.user-age {
+  color: rgba(0, 0, 0, 0.45);
+  font-family: Roboto;
+  font-size: 12px;
+  line-height: 22px;
+}
+
+.content-header-line-separator {
+  height: 71px;
+  width: 1px;
+  background-color: #dddddd;
+  margin-left: 35%;
+}
+
+.page-info {
+  margin-left: 40px;
+  width: 25%;
+}
+
+.page-info-title {
+  color: rgba(0, 0, 0, 0.65);
+  font-family: Roboto;
+  font-size: 24px;
+  line-height: 28px;
+  margin-bottom: 8px;
+}
+
+.page-info-content {
+  color: rgba(0, 0, 0, 0.65);
+  font-family: Roboto;
+  font-size: 14px;
+  line-height: 22px;
+}
+
+.shield {
+  height: 141.22px;
+  width: 155px;
+  margin-left: 24px;
+}
+
+.content-body {
+  margin-left: 3%;
+  margin-right: 3%;
+}
+
+.contet-body-mail {
+  display: flex;
+  flex-direction: row;
+  margin-top: 23px;
 }
