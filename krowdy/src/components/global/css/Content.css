@@ -9,12 +9,10 @@
 .content-header {
   display: flex;
   flex-direction: row;
-  margin-top: 34px;
+  margin-top: 0px;
   margin-left: 3%;
   margin-right: 3%;
   padding-top: 21px;
-  padding-bottom: 33px;
-  /* background: silver; */
 }
 
 .user-picture {
