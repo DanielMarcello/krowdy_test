@@ -21,6 +21,7 @@
 
 .user-info {
   margin-left: 18px;
+  width: 25%;
 }
 
 .user-name {
@@ -50,12 +51,12 @@
   height: 71px;
   width: 1px;
   background-color: #dddddd;
-  margin-left: 35%;
+  margin-left: 24%;
 }
 
 .page-info {
   margin-left: 40px;
-  width: 25%;
+  width: 40%;
 }
 
 .page-info-title {
@@ -84,8 +85,254 @@
   margin-right: 3%;
 }
 
-.contet-body-mail {
+.content-body-mail {
   display: flex;
   flex-direction: row;
-  margin-top: 23px;
+  margin-top: 38px;
+}
+
+.body-submenu {
+  width: 25%;
+}
+
+.body-submenu-item {
+  margin-bottom: 36px;
+  cursor: pointer;
+  color: rgba(0, 0, 0, 0.25);
+  font-family: Roboto;
+  font-size: 14px;
+  line-height: 16px;
+}
+
+.body-submenu-item.selected {
+  color: #ff8b08;
+  font-weight: 500;
+}
+
+.submenu-content {
+  margin-left: 66px;
+  width: 100%;
+}
+
+.custom-panel {
+  background: "#f7f7f7";
+  border-radius: 4;
+  margin-bottom: 24;
+  border: 0;
+  color: rgba(0, 0, 0, 0.85);
+  font-family: Roboto;
+  font-size: 20px;
+  line-height: 24px;
+}
+
+.panel-content {
+  margin-bottom: 55px;
+}
+
+.panel-text {
+  color: rgba(0, 0, 0, 0.85);
+  font-family: Roboto;
+  font-size: 14px;
+  line-height: 16px;
+}
+
+.mails-list {
+  margin-left: 33px;
+}
+
+.ant-table-small {
+  border: none;
+}
+
+.ant-table-thead {
+  display: none;
+}
+
+.mail-actions {
+  display: flex;
+  flex-direction: row;
+  float: right;
+}
+
+.mail-action-item {
+  margin-left: 20px;
+}
+
+.mail-action-item.disabled {
+  color: rgba(0, 0, 0, 0.25);
+}
+
+.mail-action-item.enabled {
+  color: #108ee9;
+  cursor: pointer;
+}
+
+.mail-item {
+  color: rgba(0, 0, 0, 0.85);
+  font-family: Roboto;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 16px;
+}
+.ant-table-tbody > tr > td {
+  border-bottom: 0;
+}
+
+.mail-send-verification {
+  display: flex;
+  flex-direction: row;
+  margin-top: 44px;
+}
+
+.mail-send-input {
+  width: 50%;
+}
+
+.mail-send-input::-webkit-input-placeholder {
+  color: #696969;
+  font-family: Roboto;
+  font-size: 12px;
+  line-height: 14px;
+  padding-top: 3px;
+}
+
+.mail-send-button {
+  margin-left: 8px;
+}
+
+.mail-send-cancel {
+  margin-left: 8px;
+}
+
+.mail-password-verification {
+  display: flex;
+  flex-direction: row;
+  margin-top: 20px;
+  background-color: #fbfbfb;
+  padding-top: 14px;
+}
+
+.mpv-success {
+  margin-top: 14px;
+  font-family: Roboto;
+  font-size: 12px;
+  line-height: 18px;
+}
+
+.shieldp {
+  padding-left: 33px;
+  padding-right: 33px;
+}
+
+.mail-password-content p {
+  margin-bottom: 8px;
+  font-family: Roboto;
+}
+
+.mpc-title {
+  color: rgba(0, 0, 0, 0.65);
+  font-size: 14px;
+  line-height: 16px;
+}
+
+.mpc-description {
+  color: rgba(0, 0, 0, 0.65);
+  font-size: 12px;
+  line-height: 14px;
+}
+
+.mail-password-content-input {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 8px;
+}
+
+.password-send-input::-webkit-input-placeholder {
+  color: #696969;
+  font-family: Roboto;
+  font-size: 12px;
+  line-height: 14px;
+  padding-top: 3px;
+}
+
+.password-send-input {
+  width: 50%;
+}
+
+.password-send-button {
+  margin-left: 8px;
+}
+
+.password-send-cancel {
+  margin-left: 8px;
+}
+
+.mpc-forgot-password {
+  color: #108ee9;
+  font-family: Roboto;
+  font-size: 14px;
+  line-height: 29px;
+  cursor: pointer;
+}
+
+.number-list {
+  margin-left: 33px;
+}
+
+.nl-input-row {
+  display: flex;
+  flex-direction: row;
+}
+
+.end-input {
+  padding-bottom: 9px;
+}
+
+.nl-input-row p {
+  color: #696969;
+  font-family: Roboto;
+  font-size: 12px;
+  line-height: 14px;
+  width: 25%;
+}
+
+.nl-input-row p.nl-number-label {
+  margin-left: 16px;
+}
+
+.nl-input-country {
+  width: 25%;
+}
+
+.number-input {
+  width: 25%;
+  margin-left: 16px;
+}
+
+.number-input::-webkit-input-placeholder {
+  color: #696969;
+  font-family: Roboto;
+  font-size: 12px;
+  line-height: 14px;
+  padding-top: 3px;
+}
+
+.number-send-button {
+  margin-left: 16px;
+}
+
+.number-send-cancel {
+  margin-left: 8px;
+}
+
+.code-input {
+  width: 25%;
+}
+
+.nc-success {
+  margin-top: 7px;
+  font-family: Roboto;
+  font-size: 12px;
+  line-height: 18px;
+  width: 25%;
 }
