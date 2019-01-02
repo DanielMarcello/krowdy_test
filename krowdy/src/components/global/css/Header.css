@@ -27,6 +27,10 @@
   margin: 10px 0px 0px 0px;
 }
 
+.delete-account {
+  color: red;
+}
+
 .session {
   margin: 10px 0px 0px 65%;
   width: 10%;

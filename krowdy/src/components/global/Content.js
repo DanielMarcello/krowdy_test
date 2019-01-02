@@ -9,13 +9,20 @@ import {
   Input,
   Button,
   Alert,
-  Cascader
+  Cascader,
+  Checkbox,
+  List,
+  Avatar
 } from "antd";
 import "antd/dist/antd.css";
 
 import perfil from "./images/perfil.svg";
 import shield from "./images/shield.png";
 import shieldp from "./images/shieldp.svg";
+import facebook_circle from "./images/facebook_circle.png";
+import linkedin_circle from "./images/linkedin_circle.jpg";
+import gmail_circle from "./images/gmail_circle.ico";
+import twitter_circle from "./images/twitter_circle.png";
 
 const contentBodySubmenuData = [
   { name: "Inicio de sesión y seguridad" },
@@ -24,14 +31,17 @@ const contentBodySubmenuData = [
   { name: "Conexiones" }
 ];
 
-const countryData = [{ code: "pe", name: "Peru (+51)" }];
+const countryData = [{ code: "PE +51", name: "Peru (+51)" }];
 
 class Content extends Component {
   state = {
+    currentPassword: "123456",
+    currentPasswordAlert: null,
     currentMenuView: "mail",
     currentSubmenuView: 0,
     passwordChanged: false,
     numberState: "add",
+    currentCountryCode: "",
     currentNumber: "",
     mailsData: [
       {
@@ -56,18 +66,52 @@ class Content extends Component {
     numbersData: [
       {
         key: "1",
-        name: "977 248 247",
+        name: "PE +51 977 248 247",
         mainNumber: true
       },
       {
         key: "2",
-        name: "977 248 247",
+        name: "PE +51 977 248 247",
         mainNumber: false
       },
       {
         key: "3",
-        name: "977 248 247",
+        name: "PE +51 977 248 247",
         mainNumber: false
+      }
+    ],
+    socialNetworksData: [
+      {
+        key: "1",
+        name: "Facebook",
+        icon: facebook_circle,
+        code: "Walther",
+        connected: true,
+        website: "https://www.facebook.com"
+      },
+      {
+        key: "2",
+        name: "LinkedIn",
+        icon: linkedin_circle,
+        code: "@Walther",
+        connected: true,
+        website: "https://www.linkedin.com"
+      },
+      {
+        key: "3",
+        name: "Google",
+        icon: gmail_circle,
+        code: "walther@gmail.com",
+        connected: true,
+        website: "https://www.gmail.com"
+      },
+      {
+        key: "4",
+        name: "Twitter",
+        icon: twitter_circle,
+        code: "@Walther",
+        connected: false,
+        website: "https://www.twitter.com"
       }
     ]
   };
@@ -82,6 +126,10 @@ class Content extends Component {
     this.setState({
       currentSubmenuView: k
     });
+    let selectedPanel = document.getElementById("panel" + k.toString());
+    if (selectedPanel) {
+      window.scrollTo(0, selectedPanel.offsetTop);
+    }
   };
 
   changeMainMail = k => {
@@ -103,7 +151,12 @@ class Content extends Component {
 
   deleteMail = k => {
     let newData = this.state.mailsData;
-    newData.splice(parseInt(k) - 1, 1);
+    for (let i = 0; i < newData.length; ++i) {
+      if (newData[i].key === k) {
+        newData.splice(i, 1);
+        break;
+      }
+    }
     this.setState({ mailsData: newData });
   };
 
@@ -115,7 +168,7 @@ class Content extends Component {
     let mailInput = document.getElementById("mailInput");
     if (mailInput.value.length > 0) {
       const newMail = {
-        key: (this.state.mailsData.length + 1).toString(),
+        key: Math.floor(Math.random() * 200).toString(),
         name: mailInput.value,
         verified: false,
         mainMail: false
@@ -133,12 +186,17 @@ class Content extends Component {
     }
   };
 
+  onchangeCountryCode = value => {
+    if (value.length > 0) this.setState({ currentCountryCode: value[0] });
+  };
+
   sendNumberCode = () => {
     let numberInput = document.getElementById("numberInput");
-    if (numberInput.value.length > 0) {
+    let countryCode = this.state.currentCountryCode;
+    if (numberInput.value.length > 0 && countryCode.length > 0) {
       this.setState({
         numberState: "verify",
-        currentNumber: numberInput.value
+        currentNumber: countryCode + " " + numberInput.value
       });
     }
   };
@@ -147,7 +205,7 @@ class Content extends Component {
     let codeInput = document.getElementById("codeInput");
     if (codeInput.value.length > 0) {
       const newNumber = {
-        key: (this.state.mailsData.length + 1).toString(),
+        key: Math.floor(Math.random() * 200).toString(),
         name: this.state.currentNumber,
         mainNumber: false
       };
@@ -158,6 +216,13 @@ class Content extends Component {
         currentNumber: ""
       });
     }
+  };
+
+  cancelNumberValidation = () => {
+    this.setState({
+      numberState: "add",
+      currentNumber: ""
+    });
   };
 
   changeMainNumber = k => {
@@ -179,8 +244,58 @@ class Content extends Component {
 
   deleteNumber = k => {
     let newData = this.state.numbersData;
-    newData.splice(parseInt(k) - 1, 1);
+    for (let i = 0; i < newData.length; ++i) {
+      if (newData[i].key === k) {
+        newData.splice(i, 1);
+        break;
+      }
+    }
     this.setState({ numbersData: newData });
+  };
+
+  changeCurrentPassword = () => {
+    let currentPasswordInput = document.getElementById("currentPasswordInput");
+    let newPasswordInput = document.getElementById("newPasswordInput");
+    let againNewPasswordInput = document.getElementById(
+      "againNewPasswordInput"
+    );
+
+    if (
+      this.state.currentPassword === currentPasswordInput.value &&
+      newPasswordInput.value === againNewPasswordInput.value
+    ) {
+      this.setState({
+        currentPassword: newPasswordInput.value,
+        currentPasswordAlert: "success"
+      });
+      currentPasswordInput.value = "";
+      newPasswordInput.value = "";
+      againNewPasswordInput.value = "";
+    } else {
+      this.setState({ currentPasswordAlert: "error" });
+    }
+  };
+
+  cancelSocialNetworkAccess = k => {
+    let newData = this.state.socialNetworksData;
+    for (let i = 0; i < newData.length; ++i) {
+      if (newData[i].key === k) {
+        newData[i].connected = false;
+        break;
+      }
+    }
+    this.setState({ socialNetworksData: newData });
+  };
+
+  connectSocialNetwork = k => {
+    let newData = this.state.socialNetworksData;
+    for (let i = 0; i < newData.length; ++i) {
+      if (newData[i].key === k) {
+        newData[i].connected = true;
+        break;
+      }
+    }
+    this.setState({ socialNetworksData: newData });
   };
 
   render() {
@@ -303,11 +418,15 @@ class Content extends Component {
               </ul>
             </div>
             <div className="submenu-content">
-              <Collapse bordered={false} defaultActiveKey={["0"]}>
+              <Collapse
+                bordered={false}
+                defaultActiveKey={["0", "1", "2", "3"]}
+              >
                 <Collapse.Panel
                   header="Inicio de sesión y seguridad"
                   key={0}
                   className="custom-panel"
+                  id="panel0"
                 >
                   <div className="panel-content">
                     <p className="panel-text">
@@ -385,6 +504,7 @@ class Content extends Component {
                   header="Números de celular"
                   key={1}
                   className="custom-panel"
+                  id="panel1"
                 >
                   <div className="panel-content">
                     <p className="panel-text">
@@ -413,6 +533,7 @@ class Content extends Component {
                               className="nl-input-country"
                               fieldNames={{ label: "name", value: "code" }}
                               options={countryData}
+                              onChange={this.onchangeCountryCode}
                               placeholder=""
                               id="countryCode"
                             />
@@ -461,7 +582,10 @@ class Content extends Component {
                             >
                               Validar
                             </Button>
-                            <Button className="number-send-cancel">
+                            <Button
+                              className="number-send-cancel"
+                              onClick={() => this.cancelNumberValidation()}
+                            >
                               Cancelar
                             </Button>
                           </div>
@@ -473,7 +597,7 @@ class Content extends Component {
                           />
                         </div>
                       ) : (
-                        <p>eee</p>
+                        <p />
                       )}
                     </div>
                   </div>
@@ -482,15 +606,146 @@ class Content extends Component {
                   header="Cambiar contraseña"
                   key={2}
                   className="custom-panel"
+                  id="panel2"
                 >
-                  <p>asd</p>
+                  <div className="panel-content">
+                    <p className="panel-text">
+                      Añade o elimina direcciones de correo electrónico en tu
+                      cuenta.
+                    </p>
+                    <div className="mails-list">
+                      {this.state.currentPasswordAlert === "success" ? (
+                        <Alert
+                          className="pc-alert"
+                          message="Tu contraseña se ha cambiado exitosamente"
+                          type="success"
+                          showIcon
+                        />
+                      ) : this.state.currentPasswordAlert === "error" ? (
+                        <Alert
+                          className="pc-alert"
+                          message="Error"
+                          type="error"
+                          showIcon
+                        />
+                      ) : null}
+
+                      <p className="pc-label">Contraseña actual</p>
+                      <Input
+                        className="pc-input"
+                        placeholder=""
+                        id="currentPasswordInput"
+                        type="password"
+                      />
+                      <p className="pc-label">Contraseña nueva</p>
+                      <Input
+                        className="pc-input"
+                        placeholder=""
+                        id="newPasswordInput"
+                        type="password"
+                      />
+                      <p className="pc-label">
+                        Vuelve a escribir tu contraseña nueva
+                      </p>
+                      <Input
+                        className="pc-input"
+                        placeholder=""
+                        id="againNewPasswordInput"
+                        type="password"
+                      />
+                      <div className="pc-checkbox">
+                        <Checkbox
+                          className="pc-checkbox-text"
+                          defaultChecked={true}
+                        >
+                          Solicita que todos los dispositivos inicien sesión con
+                          la nueva contraseña
+                        </Checkbox>
+                      </div>
+                      <Button
+                        type="primary"
+                        onClick={() => this.changeCurrentPassword()}
+                      >
+                        Guardar
+                      </Button>
+                    </div>
+                  </div>
                 </Collapse.Panel>
                 <Collapse.Panel
                   header="Conexiones"
                   key={3}
                   className="custom-panel"
+                  id="panel3"
                 >
-                  <p>asd</p>
+                  <div className="panel-content">
+                    <p className="panel-text">
+                      Redes sociales a conectadas a tu cuenta de Krowdy.
+                    </p>
+                    <div className="mails-list">
+                      <List
+                        className="sn-list"
+                        itemLayout="horizontal"
+                        dataSource={this.state.socialNetworksData.filter(
+                          item => item.connected === true
+                        )}
+                        renderItem={item => (
+                          <List.Item
+                            key={item.key}
+                            actions={[
+                              <p
+                                className="sn-cancel-access"
+                                onClick={() =>
+                                  this.cancelSocialNetworkAccess(item.key)
+                                }
+                              >
+                                Revocar acceso
+                              </p>
+                            ]}
+                          >
+                            <List.Item.Meta
+                              avatar={<Avatar src={item.icon} />}
+                              title={
+                                <a href={item.website}>
+                                  Estás conectado a <b>{item.name}</b>
+                                </a>
+                              }
+                              description={item.code}
+                            />
+                          </List.Item>
+                        )}
+                      />
+                      <List
+                        className="sn-list sn-not-connected"
+                        itemLayout="horizontal"
+                        dataSource={this.state.socialNetworksData.filter(
+                          item => item.connected === false
+                        )}
+                        renderItem={item => (
+                          <List.Item
+                            key={item.key}
+                            actions={[
+                              <Button
+                                onClick={() =>
+                                  this.connectSocialNetwork(item.key)
+                                }
+                              >
+                                Conectarse con &nbsp;<b>{item.name}</b>
+                              </Button>
+                            ]}
+                          >
+                            <List.Item.Meta
+                              avatar={<Avatar src={item.icon} />}
+                              title={
+                                <a href={item.website}>
+                                  Conectarse con <b>{item.name}</b>
+                                </a>
+                              }
+                            />
+                          </List.Item>
+                        )}
+                      />
+                    </div>
+                  </div>
                 </Collapse.Panel>
               </Collapse>
             </div>
@@ -498,7 +753,7 @@ class Content extends Component {
         );
         break;
       case "app":
-        contentBody = <p>APP</p>;
+        contentBody = <p>Nothing to see here :)</p>;
         break;
       default:
         break;

@@ -125,6 +125,24 @@
   line-height: 24px;
 }
 
+.ant-collapse > .ant-collapse-item > .ant-collapse-header {
+  padding: 12px 0 12px 16px;
+}
+
+.custom-panel .ant-collapse-header i {
+  background-color: silver;
+  border-radius: 50%;
+  width: 14px;
+  height: 14px;
+  margin-left: 95%;
+}
+
+.custom-panel .ant-collapse-header i svg {
+  margin-bottom: 100%;
+  width: 50%;
+  color: white;
+}
+
 .panel-content {
   margin-bottom: 55px;
 }
@@ -335,4 +353,58 @@
   font-size: 12px;
   line-height: 18px;
   width: 25%;
+}
+
+.pc-label {
+  color: #696969;
+  font-family: Roboto;
+  font-size: 12px;
+  line-height: 14px;
+  margin-bottom: 8px;
+}
+
+.pc-input,
+.pc-alert {
+  width: 50%;
+  margin-bottom: 14px;
+}
+
+.pc-alert {
+  color: rgba(0, 0, 0, 0.65);
+  font-family: Roboto;
+  font-size: 12px;
+  line-height: 18px;
+}
+
+.pc-checkbox {
+  margin-bottom: 21px;
+}
+
+.pc-checkbox-text {
+  color: #696969;
+  font-family: Roboto;
+  font-size: 12px;
+  line-height: 14px;
+  margin-bottom: 8px;
+}
+
+.sn-list {
+  color: rgba(0, 0, 0, 0.85);
+  font-family: Roboto;
+  font-size: 14px;
+  font-weight: bold;
+  line-height: 29px;
+}
+
+.sn-not-connected {
+  border-top: 1px solid #e8e8e8;
+}
+
+.ant-list-split .ant-list-item {
+  border-bottom: 0;
+}
+
+.sn-cancel-access {
+  color: #108ee9;
+  line-height: 16px;
 }

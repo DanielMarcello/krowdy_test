@@ -1,26 +1,49 @@
 import React, { Component } from "react";
 
-import { Menu, Dropdown, Icon } from "antd";
+import { Menu, Dropdown, Icon, Modal } from "antd";
 import "antd/dist/antd.css";
 
 import "./css/Header.css";
 import logo from "./images/logo.svg";
 
 class Header extends Component {
-  handleMenuClick(e) {
-    switch (e.key) {
-      case "1":
-        console.log("Sesión cerrada");
-        break;
-      default:
-        break;
-    }
-  }
+  state = {
+    visible: false
+  };
+
+  showModal = () => {
+    this.setState({
+      visible: true
+    });
+  };
+
+  hideModal = () => {
+    this.setState({
+      visible: false
+    });
+  };
 
   render() {
     const menu = (
-      <Menu onClick={this.handleMenuClick}>
-        <Menu.Item key="1">Cerrar Sesión</Menu.Item>
+      <Menu>
+        <Menu.Item
+          key="1"
+          onClick={() => {
+            console.log("Sesión cerrada");
+          }}
+        >
+          Cerrar Sesión
+        </Menu.Item>
+        <Menu.Divider />
+        <Menu.Item
+          key="2"
+          className="delete-account"
+          onClick={() => {
+            this.showModal();
+          }}
+        >
+          Cerrar Cuenta
+        </Menu.Item>
       </Menu>
     );
 
@@ -42,6 +65,20 @@ class Header extends Component {
             </a>
           </Dropdown>
         </div>
+        <Modal
+          title="Cerrar Cuenta"
+          visible={this.state.visible}
+          onOk={() => {
+            this.hideModal();
+            console.log("Cuenta cerrada");
+          }}
+          onCancel={this.hideModal}
+          okText="Cerrar"
+          cancelText="Cancelar"
+        >
+          <p>La cuenta será eliminada.</p>
+          <p>Deseas continuar?</p>
+        </Modal>
       </div>
     );
   }
