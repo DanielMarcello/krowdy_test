@@ -143,6 +143,7 @@ class Content extends Component {
     for (let i = 0; i < newData.length; ++i) {
       if (newData[i].key === k) {
         newData[i].mainMail = true;
+        console.log("Nuevo correo principal", `(${newData[i].name})`);
         break;
       }
     }
@@ -153,6 +154,7 @@ class Content extends Component {
     let newData = this.state.mailsData;
     for (let i = 0; i < newData.length; ++i) {
       if (newData[i].key === k) {
+        console.log("Correo eliminado", `(${newData[i].name})`);
         newData.splice(i, 1);
         break;
       }
@@ -174,6 +176,7 @@ class Content extends Component {
         mainMail: false
       };
       this.setState({ mailsData: [...this.state.mailsData, newMail] });
+      console.log("Nuevo correo creado", `(${mailInput.value})`);
       mailInput.value = "";
     }
   };
@@ -198,6 +201,7 @@ class Content extends Component {
         numberState: "verify",
         currentNumber: countryCode + " " + numberInput.value
       });
+      console.log("Código enviado", `(${countryCode} ${numberInput.value})`);
     }
   };
 
@@ -209,6 +213,8 @@ class Content extends Component {
         name: this.state.currentNumber,
         mainNumber: false
       };
+      console.log("Nuevo número agregado", `(${newNumber.name})`);
+      console.log("Nuevo número validado", `(${codeInput.value})`);
       this.setState({ numbersData: [...this.state.numbersData, newNumber] });
       codeInput.value = "";
       this.setState({
@@ -236,6 +242,7 @@ class Content extends Component {
     for (let i = 0; i < newData.length; ++i) {
       if (newData[i].key === k) {
         newData[i].mainNumber = true;
+        console.log("Nuevo número principal", `(${newData[i].name})`);
         break;
       }
     }
@@ -246,6 +253,7 @@ class Content extends Component {
     let newData = this.state.numbersData;
     for (let i = 0; i < newData.length; ++i) {
       if (newData[i].key === k) {
+        console.log("Número eliminado", `(${newData[i].name})`);
         newData.splice(i, 1);
         break;
       }
@@ -268,6 +276,10 @@ class Content extends Component {
         currentPassword: newPasswordInput.value,
         currentPasswordAlert: "success"
       });
+      console.log(
+        "Contraseña cambiada",
+        `(${currentPasswordInput.value} -> ${newPasswordInput.value})`
+      );
       currentPasswordInput.value = "";
       newPasswordInput.value = "";
       againNewPasswordInput.value = "";
@@ -281,6 +293,7 @@ class Content extends Component {
     for (let i = 0; i < newData.length; ++i) {
       if (newData[i].key === k) {
         newData[i].connected = false;
+        console.log("Red social revocada", `(${newData[i].name})`);
         break;
       }
     }
@@ -292,6 +305,7 @@ class Content extends Component {
     for (let i = 0; i < newData.length; ++i) {
       if (newData[i].key === k) {
         newData[i].connected = true;
+        console.log("Red social conectada", `(${newData[i].name})`);
         break;
       }
     }
